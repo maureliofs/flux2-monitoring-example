@@ -1,7 +1,20 @@
+# apiVersion: source.toolkit.fluxcd.io/v1beta1
+# kind: HelmRepository
+# metadata:
+#   name: grafana-charts
+# spec:
+#   interval: 120m0s
+#   url: https://grafana.github.io/helm-charts
+
 apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
+kind: GitRepository
 metadata:
-  name: grafana-charts
+  name: loki-stack-chart
+  namespace: flux-system
 spec:
-  interval: 120m0s
-  url: https://grafana.github.io/helm-charts
+  interval: 1m
+  ref:
+    branch: master
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/maureliofs/flux2-monitoring-example
